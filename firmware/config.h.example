@@ -1,0 +1,19 @@
+// RENAMED TO config.h BEFORE FLASHING.
+
+#ifndef CONFIG_H
+#define CONFIG_H
+
+// WiFi Credentials
+#define WIFI_SSID "YOUR_WIFI_SSID"
+#define WIFI_PASS "YOUR_WIFI_PASSWORD"
+
+// MQTT Configuration
+#define MQTT_SERVER "192.168.x.x"  // IP of the machine running Docker
+#define MQTT_PORT 1883
+#define MQTT_TOPIC "home/energy/power"
+
+// Calibration
+#define CALIBRATION_FACTOR 1.350
+#define MAINS_VOLTAGE 230.0
+
+#endif

@@ -1,0 +1,69 @@
+version: '3'
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    ports:
+      - "YOUR_INFLUXDB_PORT"
+    volumes:
+      - ./influxdb_data:/var/lib/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=my-user
+      - DOCKER_INFLUXDB_INIT_PASSWORD=my-password
+      - DOCKER_INFLUXDB_INIT_ORG=my-org
+      - DOCKER_INFLUXDB_INIT_BUCKET=home_energy
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-token
+
+  telegraf:
+    image: telegraf:1.29
+    container_name: telegraf
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - influxdb
+      - mosquitto
+
+  image-renderer:
+    image: grafana/grafana-image-renderer:latest
+    container_name: grafana-renderer
+
+  grafana:
+    image: grafana/grafana:10.1.1
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_RENDERING_SERVER_URL=YOUR_GRAFANASERVER_URL
+      - GF_RENDERING_CALLBACK_URL=YOUR_GRAFANACALLBACK_URL
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    depends_on:
+      - influxdb
+      - image-renderer
+
+# --- ADD THIS NEW SERVICE BLOCK ---
+#  nodered:
+#    image: nodered/node-red:latest
+#    container_name: nodered
+#    ports:
+#      - "YOUR_NODERED_PORT" # Node-RED's web editor port
+#    volumes:
+#      - ./nodered_data:/data # This saves your flows permanently
+#    depends_on:
+#      - grafana
+
+volumes:
+  grafana-storage: {}

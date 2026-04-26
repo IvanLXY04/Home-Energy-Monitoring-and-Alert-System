@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.env
+*.joblib  # Ignore heavy ML models if they are too big
+
+# Arduino/C++
+*.bin
+*.elf
+build/
+
+# Docker / Databases (Do NOT upload your actual database data)
+backend/influxdb_data/
+backend/grafana_data/
+backend/mosquitto/data/
+backend/mosquitto/log/
+
+# OS generated files
+.DS_Store
+Thumbs.db
