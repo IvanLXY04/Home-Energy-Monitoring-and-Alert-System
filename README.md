@@ -1,4 +1,4 @@
-# IoT-Based Home Energy Monitoring and Alert System ⚡
+# IoT-Based Home Energy Monitoring and Alert System
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![C++](https://img.shields.io/badge/C++-ESP32-green.svg)
