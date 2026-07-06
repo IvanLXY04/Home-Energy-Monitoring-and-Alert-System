@@ -95,7 +95,7 @@ The system uses a **Random Forest Regressor** to predict the "Expected Power" ba
 
 ---
 
-## 🇲🇾 The Malaysian Context
+## The Malaysian Context
 Optimized for the **TNB Domestic Tariff (Restructured July 1, 2025)**.
 The algorithm accounts for:
 - **Generation/Network/Retail** itemized charges.
