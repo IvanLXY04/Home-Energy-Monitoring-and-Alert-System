@@ -112,5 +112,5 @@ The Telegram Bot provides:
 3. **Smart Audit:** Instant calculation of **Carbon Footprint** and **Trees needed to offset** usage.
 
 ---
-
-**Developed by Ivan Ling Xin Yu**  
+**Developed by Ivan Ling**  
+*Final Year Project - Faculty of Information and Communication Technology (FICT), UTAR.*
